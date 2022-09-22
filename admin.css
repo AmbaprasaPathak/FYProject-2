@@ -1,0 +1,50 @@
+
+
+#complains{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 1400px; 
+}
+.card-body{
+    margin-top: 40px;
+    margin-right: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.295);
+    min-width: 200px;
+    width: 220px;
+    max-width: 230px;
+    height: auto;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(169, 217, 236, 0.247);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.616);
+}
+.del-btn{
+    border-radius: 5px;
+    cursor: pointer;
+}
+img{
+    width: 100%;
+    height: 100px;
+}
+header{
+    position:fixed;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+   
+}
+.del-input{
+    width: 300px;
+    margin-right: 20px;
+    border-radius: 5px;
+    border: 0.2px solid rgba(19, 15, 15, 0.377);
+    padding-left: 10px;
+}
+.del-btn{
+    padding: 0 20px;    
+    border-radius: 5px;
+    border: 0.2px solid rgba(19, 15, 15, 0.377);
+}

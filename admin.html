@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header>
+        <input class="del-input" type="text" name="" id="contact" placeholder="Contact No">
+        <button class="del-btn" id="delbtn">Delete</button>
+    
+    </header>
+    <div class="complain-flex-box"> <div id="complains"></div></div>
+   
+    <script type="module"> 
+        // Import the functions you need from the SDKs you need
+      
+        const firebaseConfig = {
+            apiKey: "AIzaSyAHulvliwBoLxv9TiGPvXGjrIMPo1bVfBs",
+            authDomain: "mini-project-acbef.firebaseapp.com",
+            databaseURL: "https://mini-project-acbef-default-rtdb.firebaseio.com",
+            projectId: "mini-project-acbef",
+            storageBucket: "mini-project-acbef.appspot.com",
+            messagingSenderId: "919915545532",
+            appId: "1:919915545532:web:d856cb2268f2739ad921b9",
+            measurementId: "G-ECQ2TNBM5S"
+
+        };
+         
+        firebase.initializeApp(firebaseConfig);
+        
+        import { getDatabase , ref , get , set , child , onValue , update , remove} from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+
+        
+        const firebaseRef = firebase.database().ref("ComplainForm/");
+        var DelContact = document.getElementById("contact");
+        var delbtn = document.getElementById("delbtn");
+        firebaseRef.on("child_added" , snap => {
+            
+        var name = snap.child("Name").val();
+        var contact = snap.child("Phone_no").val();
+        var emailid = snap.child("Email_Id").val();
+        var date = snap.child("Date").val();
+        var address = snap.child("Address").val();
+        var pincode = snap.child("Pincode").val();
+        var ward = snap.child('Ward').val();
+        var image = snap.child('ImgURL').val();  
+        
+                
+                document.querySelector('#complains').innerHTML +=`
+                <div class="card-body">
+                <p><span class="label label-info">Name: ${name}</span></p>
+                <p><span class="">Contact no: ${contact}</span></p>
+                <p><span class="">Email: ${emailid}</span></p>
+                <p><span class="">Date: ${date}</span></p>
+                <p><span class="">Address: ${address}</span></p>
+                <p><span class="">Pincode: ${pincode}</span></p>
+                <p><span class="">Ward: ${ward}</span></p>
+                <img src=" ${image}">
+                
+                </div>
+                `
+            });
+        
+            function deleteData(e){
+                e.preventDefault();
+                firebase.database().ref('ComplainForm/'+DelContact.value).remove()
+                .then(()=>{
+                    alert("deleted successfully");
+                })
+                .catch((error)=>{
+                    alert("unsuccessful , error "+error)
+                });
+            }
+
+            delbtn.addEventListener('click',deleteData);
+
+        </script>
+    
+</body>
+</html>
